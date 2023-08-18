@@ -1,0 +1,38 @@
+
+{% load static %}
+
+
+<!DOCTYPE html>
+{% if request.path == "/accounts/dashboard" %}
+    <html class="h-full bg-gray-100">
+
+{% else %}
+    <html class="h-full bg-white">
+
+{% endif %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{% static 'output.css' %}" rel="stylesheet">
+    <title>Welcome</title>
+</head>
+<body class="h-full">
+
+
+    {% if user.is_authenticated %}
+    <!-- Content for logged-in users -->
+    {% include 'partials/navbar.html' %}
+    {% else %}
+    <!-- Content for logged-out users -->
+    {% include 'partials/LandingNavbar.html' %}
+    {% endif %}
+    
+
+    {% block content %} {% endblock %}
+    
+
+    <script src="{% static 'js/dashboard.js' %}"></script>
+
+</body>
+</html>
